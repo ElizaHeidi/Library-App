@@ -45,3 +45,23 @@ tr:nth-child(odd) td {
 caption {
   padding: 10px;
 }
+
+.table-wrapper {
+  height: 600px;
+  width: 650px;
+  border: 2px solid violet;
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

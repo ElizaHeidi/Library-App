@@ -1,7 +1,6 @@
 let input = document.querySelector("#book-input");
 let submit = document.querySelector(".submit-btn");
 let bookArray = [];
-let table;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -9,6 +8,12 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+let containerDiv = document.createElement("div");
+containerDiv.classList.add("container");
+containerDiv.appendChild(input);
+containerDiv.appendChild(submit);
+document.body.appendChild(containerDiv);
 
 submit.addEventListener("click", function (event) {
   event.preventDefault();
