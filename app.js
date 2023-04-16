@@ -58,13 +58,18 @@ function createTable() {
     row.appendChild(th);
   }
 
+  // Add tbody to the table
+  let tbody = document.createElement("tbody");
+  table.appendChild(tbody);
+
   addRow(bookArray[0]);
   document.body.append(table);
   table.setAttribute("width", "640");
 }
 
 function addRow(Book) {
-  let row = table.insertRow();
+  let tbody = table.querySelector("tbody");
+  let row = tbody.insertRow();
   row.insertCell(0).innerHTML = Book.title;
   row.insertCell(1).innerHTML = Book.author;
   row.insertCell(2).innerHTML = Book.pages;
@@ -92,6 +97,15 @@ function deleteBook(e) {
     const row = e.target.closest("tr");
     if (row) {
       row.parentElement.removeChild(row);
+    }
+
+    const tbody = table.querySelector("tbody");
+    const rowCount = tbody.querySelectorAll("tr").length;
+    if (rowCount === 0) {
+      const thead = table.querySelector("thead");
+      if (thead) {
+        table.removeChild(thead);
+      }
     }
   }
 }
