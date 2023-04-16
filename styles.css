@@ -8,7 +8,7 @@ h1 {
 }
 
 input {
-  width: 650px;
+  width: 640px;
 }
 
 table {
@@ -16,6 +16,7 @@ table {
   border: 2px solid rgb(200, 200, 200);
   letter-spacing: 1px;
   font-size: 0.8rem;
+  font-family: sans-serif;
 }
 
 td,
@@ -27,7 +28,6 @@ th {
 th {
   background-color: rgb(235, 235, 235);
   font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
 }
 
 td {
