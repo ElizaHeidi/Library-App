@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="styles.css"/>
     <script src="app.js" defer></script>
     <script src="https://kit.fontawesome.com/c7f8516341.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rancho&display=swap" rel="stylesheet">
     <title>Library</title>
   </head>
   <body>
-    <h1>Library</h1>
+    <h1>What have you been reading?</h1>
     <div class="input-container">
         <form action="#">
-            <label for="book-input">What have you been reading?</label>
+            <label for="book-input"></label>
             <div>
-                <p>Enter the title, author, page numbers, and read status as comma-separated values <br>(like this: <span style="font-style: italic;">"Harry Potter and the Sorceror's Stone, JK rowling, 456, read"</span>)</p>
+                <p>Enter the title, author, and genre separated by commas</p>
+                <p>(like this: <span style="font-style: italic;">"Harry Potter and the Sorcerer's Stone, JK Rowling, fantasy"</span>)</p>
             </div>
             <div class="input-button">
-            <input type="text" id="book-input" name="book-input" placeholder="Title, author, page #s, read status">
+            <input type="text" id="book-input" name="book-input" placeholder="Title, author, genre">
         </form>
             <button class="submit-btn" type="submit">New Book</button>
         </div>

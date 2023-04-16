@@ -1,5 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 h1 {
+  font-family: "pacifico";
   text-align: center;
+  padding: 18px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+form {
+  font-size: 16px;
+}
+
+form p {
+  padding: 24px;
+  font-family: "rancho";
+  font-size: 24px;
+}
+
+div > p:nth-child(2) {
+  font-family: "roboto";
+  text-align: center;
+  font-size: small;
+  padding: 0;
 }
 
 .input-container {
@@ -9,25 +35,84 @@ h1 {
 
 input {
   width: 640px;
+  margin: 18px;
+}
+
+input:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.submit-btn {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.submit-btn:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.submit-btn {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 table {
+  margin-top: 18px;
   border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
+  border: 4px solid black;
   letter-spacing: 1px;
   font-size: 0.8rem;
-  font-family: sans-serif;
+  font-family: "roboto";
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 td,
 th {
-  border: 1px solid rgb(190, 190, 190);
+  border: 1px solid black;
   padding: 10px 20px;
+  font-family: "roboto";
 }
 
 th {
   background-color: rgb(235, 235, 235);
   font-weight: bold;
+  font-family: "rancho";
+  font-size: large;
 }
 
 td {
@@ -35,11 +120,11 @@ td {
 }
 
 tr:nth-child(even) td {
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(235, 235, 235);
 }
 
 tr:nth-child(odd) td {
-  background-color: rgb(245, 245, 245);
+  background-color: white;
 }
 
 caption {
@@ -47,16 +132,72 @@ caption {
 }
 
 .table-wrapper {
-  height: 600px;
-  width: 650px;
-  border: 2px solid violet;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.read-status {
+  margin: 4px;
+  margin-top: 6.5px;
+  margin-left: 2px;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 100px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.read-status:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.trash-icon {
+  margin-left: 12px;
+  height: 32px;
+  width: 32px;
+  background-color: white;
+}
+
+.trash-icon:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.fa-solid {
+  font-size: 16px;
+}
+
+.read-status,
+.trash-icon {
+  margin-left: 16px;
 }
 
 form {

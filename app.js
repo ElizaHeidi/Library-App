@@ -3,12 +3,25 @@ let submit = document.querySelector(".submit-btn");
 let bookArray = [];
 let table;
 
-function Book(title, author, pages, read) {
+function Book(title, author, genre, read) {
   this.title = title;
   this.author = author;
-  this.pages = pages;
-  this.read = read;
+  this.genre = genre;
 }
+
+bookPrototype = {
+  toggleRead: function () {
+    if (this.read === "Read") {
+      this.read = "Not yet!";
+    } else if (this.read === "Not yet!") {
+      this.read = "Read";
+    } else {
+      this.read = "Read"; // set undefined value to "yes"
+    }
+  },
+};
+
+Book.prototype = Object.create(bookPrototype);
 
 let containerDiv = document.createElement("div");
 containerDiv.classList.add("container");
@@ -19,18 +32,15 @@ document.body.appendChild(containerDiv);
 submit.addEventListener("click", function (event) {
   event.preventDefault();
   let bookInput = input.value;
-  console.log(bookInput);
   let bookInputArray = bookInput.split(",");
 
   let title = bookInputArray[0];
   let author = bookInputArray[1];
-  let pages = bookInputArray[2];
+  let genre = bookInputArray[2];
   let read = bookInputArray[3];
 
-  let newBook = new Book(title, author, pages, read);
+  let newBook = new Book(title, author, genre, read);
   bookArray.push(newBook);
-
-  console.log(bookArray);
 
   if (!table) {
     createTable();
@@ -54,7 +64,7 @@ submit.addEventListener("click", function (event) {
 function createTable() {
   table = document.createElement("table");
 
-  let headers = ["Title", "Author", "Pages", "Read"];
+  let headers = ["Title", "Author", "Genre", "Read Status"];
   let thead = table.createTHead();
   let row = thead.insertRow();
   for (let key of headers) {
@@ -73,14 +83,28 @@ function createTable() {
   table.setAttribute("width", "640");
 }
 
-function addRow(Book) {
+function addRow(book) {
   let tbody = table.querySelector("tbody");
   let row = tbody.insertRow();
-  row.insertCell(0).innerHTML = Book.title;
-  row.insertCell(1).innerHTML = Book.author;
-  row.insertCell(2).innerHTML = Book.pages;
-  row.insertCell(3).innerHTML = Book.read;
+  row.insertCell(0).innerHTML = book.title;
+  row.insertCell(1).innerHTML = book.author;
+  row.insertCell(2).innerHTML = book.genre;
+  let readCell = row.insertCell(3);
+  readCell.innerHTML = "?";
 
+  // Create the toggle read status button
+  const toggleReadBtn = document.createElement("button");
+  toggleReadBtn.classList.add("read-status");
+  toggleReadBtn.textContent = "Read Status";
+  row.appendChild(toggleReadBtn);
+
+  // Add click event listener to the toggle read status button
+  toggleReadBtn.addEventListener("click", () => {
+    bookPrototype.toggleRead();
+    readCell.innerHTML = bookPrototype.read;
+  });
+
+  //   Create the trashBtn
   const trashBtn = document.createElement("button");
   trashBtn.classList.add("trash-icon");
 
