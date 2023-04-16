@@ -32,16 +32,11 @@ submit.addEventListener("click", function (event) {
     addRow(newBook);
   }
 
-  const trashBtn = document.createElement("button");
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  trashBtn.classList.add("trash-icon");
+  let wrapperDiv = document.createElement("div");
+  wrapperDiv.classList.add("table-wrapper");
+  wrapperDiv.appendChild(table);
 
-  const icon = document.createElement("i");
-  icon.classList.add("fa-solid", "fa-trash");
-  trashBtn.appendChild(icon);
-
-  row.appendChild(trashBtn);
+  document.body.appendChild(wrapperDiv);
 
   clear();
 });
@@ -63,6 +58,7 @@ function createTable() {
 
   addRow(bookArray[0]);
   document.body.append(table);
+  table.setAttribute("width", "640");
 }
 
 function addRow(Book) {
@@ -71,8 +67,24 @@ function addRow(Book) {
   row.insertCell(1).innerHTML = Book.author;
   row.insertCell(2).innerHTML = Book.pages;
   row.insertCell(3).innerHTML = Book.read;
+
+  const trashBtn = document.createElement("button");
+  trashBtn.classList.add("trash-icon");
+
+  const icon = document.createElement("i");
+  icon.classList.add("fa-solid", "fa-trash");
+  trashBtn.appendChild(icon);
+
+  row.appendChild(trashBtn);
 }
 
 function clear() {
   input.value = "";
 }
+
+// function deleteBook() {
+//     function deleteTask(e) {
+//         if (e.target.classList.contains('trash-icon') || e.target.classList.contains('fa-trash')) {
+//           const row = e.target.closest('row');
+//           table.removeChild(row);
+// }
