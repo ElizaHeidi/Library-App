@@ -38,6 +38,8 @@ submit.addEventListener("click", function (event) {
 
   document.body.appendChild(wrapperDiv);
 
+  wrapperDiv.addEventListener("click", deleteBook);
+
   clear();
 });
 
@@ -82,9 +84,14 @@ function clear() {
   input.value = "";
 }
 
-// function deleteBook() {
-//     function deleteTask(e) {
-//         if (e.target.classList.contains('trash-icon') || e.target.classList.contains('fa-trash')) {
-//           const row = e.target.closest('row');
-//           table.removeChild(row);
-// }
+function deleteBook(e) {
+  if (
+    e.target.classList.contains("trash-icon") ||
+    e.target.classList.contains("fa-trash")
+  ) {
+    const row = e.target.closest("tr");
+    if (row) {
+      row.parentElement.removeChild(row);
+    }
+  }
+}
