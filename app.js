@@ -52,8 +52,12 @@ function getInput() {
   let genre = bookInputArray[2];
   let read = bookInputArray[3];
 
+  // creates a new Book object using the Book constructor function
+  // with the extracted values as arguments. The resulting object is assigned to the newBook variable.
   let newBook = new Book(title, author, genre, read);
 
+  // If there is no table or rows, then push the newBook value to the array and createTable()
+  // Else, push the newBook to the array again and add a row
   if (!table || table.rows.length === 0) {
     bookArray.push(newBook);
     createTable();
@@ -72,7 +76,10 @@ function createWrapper() {
   document.body.appendChild(wrapperDiv);
 }
 
-//
+// Create table, set headers equal to the appropriate values, create a tHead
+// insert a row, loop through the headers and create a th for each one
+// Then print the text.value of each header (eg., 'title') into a new textNode
+// Then append that textNode to each header and append each header to the created row
 function createHeader() {
   table = document.createElement("table");
 
@@ -87,6 +94,8 @@ function createHeader() {
   }
 }
 
+// If there is no table or rows, then push the newBook value to the array and createTable()
+// Else, push the newBook to the array again and add a row
 function createTable() {
   if (!table || !table.querySelector("thead")) {
     createHeader();
@@ -101,12 +110,14 @@ function createTable() {
   table.setAttribute("width", "640");
 }
 
+// Grab body and each row created, Insert cell 1 with its text.content set to the
+// book's submitted title value, repeat for each field
 function addRow(book) {
   let tbody = table.querySelector("tbody");
   let row = tbody.insertRow();
-  row.insertCell(0).innerHTML = book.title;
-  row.insertCell(1).innerHTML = book.author;
-  row.insertCell(2).innerHTML = book.genre;
+  row.insertCell(0).textContent = book.title;
+  row.insertCell(1).textContent = book.author;
+  row.insertCell(2).textContent = book.genre;
   let readCell = row.insertCell(3);
   readCell.innerHTML = "?";
 
@@ -132,6 +143,7 @@ function addRow(book) {
 
   row.appendChild(trashBtn);
 
+  //   Add eventListener to trashBtn
   trashBtn.addEventListener("click", deleteBook);
 }
 
@@ -139,6 +151,8 @@ function clear() {
   input.value = "";
 }
 
+// if the click target contains the trahsBtn or its icon, then delete that
+// button's closest row in the table
 function deleteBook(e) {
   if (
     e.target.classList.contains("trash-icon") ||
@@ -149,6 +163,8 @@ function deleteBook(e) {
       row.parentElement.removeChild(row);
     }
 
+    // Loop through tr elements and check if there are 0 rows,
+    // then if yes, delete the header if it exists
     const tbody = table.querySelector("tbody");
     const rowCount = tbody.querySelectorAll("tr").length;
     if (rowCount === 0) {
