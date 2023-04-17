@@ -19,20 +19,21 @@ submit.addEventListener("click", function (event) {
 
 // Prototypes
 
-function Book(title, author, genre, read) {
+function Book(title, author, genre, status) {
   this.title = title;
   this.author = author;
   this.genre = genre;
+  this.status = status;
 }
 
 bookPrototype = {
   toggleRead: function () {
-    if (this.read === "Read") {
-      this.read = "Not yet!";
-    } else if (this.read === "Not yet!") {
-      this.read = "Read";
+    if (this.status === "Read") {
+      this.status = "Not yet!";
+    } else if (this.status === "Not yet!") {
+      this.status = "Read";
     } else {
-      this.read = "Read"; // set undefined value to "yes"
+      this.status = "Read"; // set undefined value to "Read"
     }
   },
 };
@@ -50,11 +51,11 @@ function getInput() {
   let title = bookInputArray[0];
   let author = bookInputArray[1];
   let genre = bookInputArray[2];
-  let read = bookInputArray[3];
+  let status = bookInputArray[3];
 
   // creates a new Book object using the Book constructor function
   // with the extracted values as arguments. The resulting object is assigned to the newBook variable.
-  let newBook = new Book(title, author, genre, read);
+  let newBook = new Book(title, author, genre, status);
 
   // If there is no table or rows, then push the newBook value to the array and createTable()
   // Else, push the newBook to the array again and add a row
@@ -119,18 +120,24 @@ function addRow(book) {
   row.insertCell(1).textContent = book.author;
   row.insertCell(2).textContent = book.genre;
   let readCell = row.insertCell(3);
-  readCell.innerHTML = "?";
+  readCell.innerHTML = "";
 
   // Create the toggle read status button
   const toggleReadBtn = document.createElement("button");
   toggleReadBtn.classList.add("read-status");
   toggleReadBtn.textContent = "Read Status";
-  row.appendChild(toggleReadBtn);
+  readCell.appendChild(toggleReadBtn);
 
   // Add click event listener to the toggle read status button
   toggleReadBtn.addEventListener("click", () => {
     book.toggleRead();
-    readCell.innerHTML = book.read;
+    if (toggleReadBtn.textContent === "Read") {
+      toggleReadBtn.textContent = "Not yet!";
+    } else if (toggleReadBtn.textContent === "Not yet!") {
+      toggleReadBtn.textContent = "Read";
+    } else {
+      toggleReadBtn.textContent = "Read"; // set undefined value to "Read"
+    }
   });
 
   //   Create the trashBtn
