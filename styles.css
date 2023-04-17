@@ -16,7 +16,6 @@ h1 {
   font-family: "pacifico";
   text-align: center;
   padding: 18px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .fa-solid {
@@ -47,6 +46,7 @@ div > p:nth-child(2) {
 
 input:nth-child(1) {
   width: 640px;
+  height: 32px;
   margin: 18px;
 }
 
@@ -83,21 +83,33 @@ input:hover {
 
 .submit-btn:hover {
   background-color: rgb(235, 235, 235);
+  color: #000;
 }
 
 .submit-btn {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #000;
+  margin: 4px;
+  margin-top: 5px;
+  margin-left: 2px;
+  align-items: center;
+  background-color: black;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: white;
   cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-    5px 5px 0px 0px;
-  position: relative;
+  display: inline-flex;
+  fill: #000;
+  font-family: "roboto";
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 100px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
