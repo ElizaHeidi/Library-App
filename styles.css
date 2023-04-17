@@ -19,6 +19,10 @@ h1 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.fa-solid {
+  font-size: 26px;
+}
+
 form {
   font-size: 16px;
 }
@@ -199,8 +203,9 @@ caption {
   background-color: rgb(235, 235, 235);
 }
 
-.fa-solid {
+.fa-trash {
   font-size: 16px;
+  margin-top: 20px;
 }
 
 .read-status,

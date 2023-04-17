@@ -22,6 +22,7 @@ submit.addEventListener("click", function (event) {
   openModal();
 });
 
+// Listen for 'enter' keypress in input field
 input.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
