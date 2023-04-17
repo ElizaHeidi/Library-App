@@ -3,6 +3,22 @@ let submit = document.querySelector(".submit-btn");
 let bookArray = [];
 let table;
 
+let containerDiv = document.createElement("div");
+containerDiv.classList.add("container");
+containerDiv.appendChild(input);
+containerDiv.appendChild(submit);
+document.body.appendChild(containerDiv);
+
+// Listen for click on New Book button
+submit.addEventListener("click", function (event) {
+  event.preventDefault();
+  getInput();
+  createWrapper();
+  clear();
+});
+
+// Prototypes
+
 function Book(title, author, genre, read) {
   this.title = title;
   this.author = author;
@@ -23,14 +39,11 @@ bookPrototype = {
 
 Book.prototype = Object.create(bookPrototype);
 
-let containerDiv = document.createElement("div");
-containerDiv.classList.add("container");
-containerDiv.appendChild(input);
-containerDiv.appendChild(submit);
-document.body.appendChild(containerDiv);
+// Functions
 
-submit.addEventListener("click", function (event) {
-  event.preventDefault();
+// Save the input.value to a variable, separate it by the commas, and set each
+// object to corresponding indices of the array
+function getInput() {
   let bookInput = input.value;
   let bookInputArray = bookInput.split(",");
 
@@ -40,28 +53,27 @@ submit.addEventListener("click", function (event) {
   let read = bookInputArray[3];
 
   let newBook = new Book(title, author, genre, read);
-  bookArray.push(newBook);
 
-  if (!table) {
+  if (!table || table.rows.length === 0) {
+    bookArray.push(newBook);
     createTable();
   } else {
+    bookArray.push(newBook);
     addRow(newBook);
   }
+}
 
+// Wrap created table in div
+function createWrapper() {
   let wrapperDiv = document.createElement("div");
   wrapperDiv.classList.add("table-wrapper");
   wrapperDiv.appendChild(table);
 
   document.body.appendChild(wrapperDiv);
+}
 
-  wrapperDiv.addEventListener("click", deleteBook);
-
-  clear();
-});
-
-// Functions
-
-function createTable() {
+//
+function createHeader() {
   table = document.createElement("table");
 
   let headers = ["Title", "Author", "Genre", "Read Status"];
@@ -72,6 +84,12 @@ function createTable() {
     let text = document.createTextNode(key);
     th.appendChild(text);
     row.appendChild(th);
+  }
+}
+
+function createTable() {
+  if (!table || !table.querySelector("thead")) {
+    createHeader();
   }
 
   // Add tbody to the table
@@ -100,8 +118,8 @@ function addRow(book) {
 
   // Add click event listener to the toggle read status button
   toggleReadBtn.addEventListener("click", () => {
-    bookPrototype.toggleRead();
-    readCell.innerHTML = bookPrototype.read;
+    book.toggleRead();
+    readCell.innerHTML = book.read;
   });
 
   //   Create the trashBtn
@@ -113,6 +131,8 @@ function addRow(book) {
   trashBtn.appendChild(icon);
 
   row.appendChild(trashBtn);
+
+  trashBtn.addEventListener("click", deleteBook);
 }
 
 function clear() {
