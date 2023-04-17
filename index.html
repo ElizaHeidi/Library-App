@@ -8,10 +8,8 @@
     <script src="app.js" defer></script>
     <script src="https://kit.fontawesome.com/c7f8516341.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rancho&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rancho&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <title>Library</title>
   </head>
   <body>
@@ -29,5 +27,22 @@
             <button class="submit-btn" type="submit">New Book</button>
         </div>
     </div>
+    <section class="modal hidden">
+        <div class="flex">
+          <button class="btn-close">⨉</button>
+        </div>
+        <div>
+          <h3>Have you read this book?</h3>
+          
+        </div>
+      
+        <input type="radio" id="read" name="book-status" value="read"/>
+        <label for="radio">Read</label>
+        <input type="radio" id="unread" name="book-status" value="unread"/>
+        <label for="radio"> Not yet!</label>
+        <button class="btn-submit" type="submit">Submit</button>
+      </section>
+      
+      <div class="overlay hidden"></div>
   </body>
 </html>

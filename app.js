@@ -1,5 +1,9 @@
 let input = document.querySelector("#book-input");
 let submit = document.querySelector(".submit-btn");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const closeModalBtn = document.querySelector(".btn-close");
+const modalSubmit = document.querySelector(".btn-submit");
 let bookArray = [];
 let table;
 
@@ -15,6 +19,17 @@ submit.addEventListener("click", function (event) {
   getInput();
   createWrapper();
   clear();
+  openModal();
+});
+
+input.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    getInput();
+    createWrapper();
+    clear();
+    openModal();
+  }
 });
 
 // Prototypes
@@ -140,7 +155,10 @@ function addRow(book) {
     }
   });
 
-  //   Create the trashBtn
+  // Update the read status for the current book
+  updateReadStatus(toggleReadBtn, book);
+
+  // Create the trashBtn
   const trashBtn = document.createElement("button");
   trashBtn.classList.add("trash-icon");
 
@@ -150,7 +168,7 @@ function addRow(book) {
 
   row.appendChild(trashBtn);
 
-  //   Add eventListener to trashBtn
+  // Add eventListener to trashBtn
   trashBtn.addEventListener("click", deleteBook);
 }
 
@@ -158,7 +176,7 @@ function clear() {
   input.value = "";
 }
 
-// if the click target contains the trahsBtn or its icon, then delete that
+// if the click target contains the trashBtn or its icon, then delete that
 // button's closest row in the table
 function deleteBook(e) {
   if (
@@ -182,3 +200,40 @@ function deleteBook(e) {
     }
   }
 }
+
+function updateReadStatus(toggleReadBtn, book) {
+  toggleReadBtn.textContent = book.status;
+}
+
+function openModal() {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
+function closeModal() {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+}
+
+closeModalBtn.addEventListener("click", closeModal);
+
+modalSubmit.addEventListener("click", function () {
+  let readRadio = document.querySelector("#read");
+  let unreadRadio = document.querySelector("#unread");
+
+  if (readRadio.checked) {
+    bookArray[bookArray.length - 1].status = "Read";
+  } else if (unreadRadio.checked) {
+    bookArray[bookArray.length - 1].status = "Not yet!";
+  } else {
+    bookArray[bookArray.length - 1].status = "Read";
+  }
+
+  let readStatusButtons = document.querySelectorAll(".read-status");
+  updateReadStatus(
+    readStatusButtons[readStatusButtons.length - 1],
+    bookArray[bookArray.length - 1]
+  );
+
+  closeModal();
+});
