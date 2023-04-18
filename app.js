@@ -204,6 +204,9 @@ function deleteBook(e) {
 
 function updateReadStatus(toggleReadBtn, book) {
   toggleReadBtn.textContent = book.status;
+  if (book.status === "Read") {
+    toggleReadBtn.setAttribute("style", "background: black; color: white");
+  }
 }
 
 function openModal() {
