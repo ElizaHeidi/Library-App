@@ -204,8 +204,12 @@ function deleteBook(e) {
 
 function updateReadStatus(toggleReadBtn, book) {
   toggleReadBtn.textContent = book.status;
+  toggleReadBtn.setAttribute("style", "font-family: 'roboto'");
   if (book.status === "Read") {
-    toggleReadBtn.setAttribute("style", "background: black; color: white");
+    toggleReadBtn.setAttribute(
+      "style",
+      "background: black; color: white; font-family: 'roboto'"
+    );
   }
 }
 
